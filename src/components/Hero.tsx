@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import heroImg from '../assets/hero.png';
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
@@ -52,7 +53,9 @@ const Hero: React.FC = () => {
             <div className="wanted-poster">
               <div className="wp-swords">🗡️⚔️🗡️</div>
               <div className="wp-header">WANTED</div>
-              <div className="wp-img">🦸‍♀️</div>
+              <div className="wp-img">
+                <img src={heroImg} alt="Chinmayi Bhise" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               <div className="wp-name">CHINMAYI BHISE</div>
               <div className="wp-title">The Cyber Navigator</div>
               <div className="wp-bounty-lbl">Bounty</div>
