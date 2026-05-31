@@ -18,7 +18,7 @@ const About: React.FC = () => {
         </div>
         <div>
           <div className="stat-row">
-            <div className="stat-cell"><span className="stat-n">8.78</span><span className="stat-l">CGPA</span></div>
+            <div className="stat-cell"><span className="stat-n">8.82</span><span className="stat-l">CGPA</span></div>
             <div className="stat-cell"><span className="stat-n">Top 3%</span><span className="stat-l">TryHackMe</span></div>
             <div className="stat-cell"><span className="stat-n">4+</span><span className="stat-l">Projects</span></div>
             <div className="stat-cell"><span className="stat-n">4</span><span className="stat-l">Certifications</span></div>

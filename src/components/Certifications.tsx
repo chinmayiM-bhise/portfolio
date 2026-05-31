@@ -6,6 +6,10 @@ const Certifications: React.FC = () => {
     { ico: '🔍', name: 'Google Cybersecurity Certificate', org: 'Cybersecurity & Data-Driven Insights' },
     { ico: '🎯', name: 'Threat Hunting — Security Blue Team', org: 'Proactive Threat Detection & Analysis' },
     { ico: '☁️', name: 'AWS Semester 1 Badge', org: 'Cloud Computing & Scalable Solutions' },
+    { ico: '🧠', name: 'Threat Intelligence Analyst', org: 'arcX • Cyber Threat Intelligence' },
+    { ico: '🏆', name: 'Career Essentials in Cybersecurity', org: 'Microsoft & LinkedIn' },
+    { ico: '💉', name: 'SQL Injection Attacks', org: 'EC-Council • Web Application Security' },
+    
   ];
 
   return (

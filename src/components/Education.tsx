@@ -13,7 +13,7 @@ const Education: React.FC = () => {
           <div className="edu-deg">Integrated B.Tech + M.Tech · Computer Science & Engineering (Cybersecurity)</div>
           <div className="edu-meta">
             <span>2022 – 2027</span>
-            <span>CGPA: <strong>8.78 / 10.0</strong></span>
+            <span>CGPA: <strong>8.82 / 10.0</strong></span>
             <span>Maharashtra, India</span>
           </div>
         </div>

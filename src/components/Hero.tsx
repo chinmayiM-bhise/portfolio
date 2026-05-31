@@ -8,11 +8,12 @@ const Hero: React.FC = () => {
   const [charIndex, setCharIndex] = useState(0);
 
   const lines = [
-    'Digital Forensics Researcher 🔍',
-    'Cloud Security Engineer ☁️',
-    'Ethical Hacker & CTF Player ⚔️',
-    'Top 3% on TryHackMe — Worldwide 🏆',
-    "Nothing happened. — and that's the goal.",
+  'Finding Artifacts. Following Evidence. 🔎',
+  'Turning Logs into Stories 📜',
+  'Clouds Secure. Threats Detected. ☁️',
+  'Hunting Bugs Before They Hunt You 🐞',
+  'Top 3% on TryHackMe 🏆',
+  'Nothing happened. And that is the goal. 🛡️',
   ];
 
   useEffect(() => {
