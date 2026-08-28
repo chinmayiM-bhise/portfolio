@@ -47,7 +47,6 @@ const App: React.FC = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
-      // Don't spawn sparkle if clicking interactive inputs or buttons
       const target = e.target as HTMLElement;
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'BUTTON' || target.tagName === 'A') {
         return;
@@ -74,8 +73,9 @@ const App: React.FC = () => {
       { id: 'skills-s', ico: '⚔️', msg: 'Skill Tree Revealed — Three-Sword Cyber Mastery' },
       { id: 'proj-s', ico: '🗺️', msg: 'Projects Discovered — 8 Security Deployments Explored' },
       { id: 'exp-s', ico: '🏛️', msg: 'Arc Complete — UP Police Forensics & Lab Ops' },
-      { id: 'certs-s', ico: '🏅', msg: 'Credentials Verified — CAP, Google, Blue Team, arcX' },
-      { id: 'edu-s', ico: '🎓', msg: 'Academic Record — NFSU B.Tech + M.Tech (8.82 CGPA)' },
+      { id: 'certs-s', ico: '🏅', msg: 'Credentials Verified — CAP, CNSP, Fortinet NSE, Google' },
+      { id: 'edu-s', ico: '🎓', msg: 'Academic Record — NFSU Gujarat (8.82 CGPA)' },
+      { id: 'inv-s', ico: '☁️', msg: 'Community Alignment — AWS Community & GDSC Lead' },
       { id: 'contact-s', ico: '📡', msg: "Den Den Mushi Active — Ready for Direct Dispatch" },
     ];
 
@@ -112,8 +112,7 @@ const App: React.FC = () => {
     { t: 'Three Swords, One Mission', b: 'VAPT for offensive testing, SOC for real-time threat hunting, and DFIR for unimpeachable forensics. 🗡️' },
     { t: 'Nothing Happened.', b: '...the hallmark of an exceptional security posture. Threats contained before breach. 🛡️' },
     { t: 'The Grand Line of Cybersecurity', b: 'From analyzing firmware binaries to defending SCADA Modbus PLCs, every attack vector is mapped.' },
-    { t: 'TryHackMe Top 3%', b: 'Hundreds of challenge labs conquered. Hands-on muscle memory in active exploitation & defense. 🏆' },
-    { t: 'National Forensic Sciences University', b: 'Trained at India premier forensic & cybersecurity institute under MHA. Rigorous standards. 🎓' },
+    { t: 'National Forensic Sciences University', b: 'Trained at India\'s premier forensic & cybersecurity institute in Gujarat under MHA. Rigorous standards. 🎓' },
     { t: 'Den Den Mushi Ready', b: 'Looking for a dedicated engineer in SOC, VAPT, Forensics, or OT/IoT? Let’s connect! 📡' }
   ];
 
@@ -138,11 +137,8 @@ const App: React.FC = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
+      {/* Scroll Progress Bar at Top */}
       <div id="prog-bar" style={{ width: `${scrollProgress}%` }}></div>
-      <div id="prog-label" style={{ opacity: scrollProgress > 2 ? 1 : 0 }}>
-        {scrollStage} · {scrollProgress}%
-      </div>
 
       {/* Cyber Constellation Background Canvas */}
       <Canvas />
@@ -157,8 +153,8 @@ const App: React.FC = () => {
         onClose={() => setSwordMsg((prev) => ({ ...prev, show: false }))}
       />
 
-      {/* Navigation Bar */}
-      <Navbar />
+      {/* Navigation Bar with integrated Log Pose */}
+      <Navbar scrollStage={scrollStage} scrollProgress={scrollProgress} />
 
       {/* Main Content Flow */}
       <main>

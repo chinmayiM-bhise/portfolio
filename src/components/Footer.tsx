@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <div className="footer-sub">
-            National Forensic Sciences University (NFSU) · Maharashtra / Gujarat, India · <em>"Nothing happened."</em>
+            National Forensic Sciences University (NFSU) · Gandhinagar, Gujarat, India · <em>"Nothing happened."</em>
           </div>
           <div className="footer-copy">
             © {new Date().getFullYear()} Chinmayi Bhise. Handcrafted with React & Three-Sword Cyber Discipline.

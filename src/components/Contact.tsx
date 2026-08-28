@@ -79,8 +79,8 @@ const Contact: React.FC = () => {
             <div className="contact-item">
               <span className="c-ico">🏛️</span>
               <div className="c-info">
-                <div className="c-lbl">Location & University</div>
-                <span className="c-val">NFSU, Maharashtra / Gujarat, India (Open to Relocation)</span>
+                <div className="c-lbl">University Location</div>
+                <span className="c-val">NFSU, Gandhinagar, Gujarat, India (Open to Relocation)</span>
               </div>
             </div>
           </div>

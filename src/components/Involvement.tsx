@@ -3,6 +3,13 @@ import React from 'react';
 const Involvement: React.FC = () => {
   const involvement = [
     {
+      icon: '☁️',
+      badge: 'CLOUD & SECURITY COMMUNITY',
+      role: 'AWS Community Member',
+      org: 'AWS User Group & Cloud Community',
+      desc: 'Active participant in AWS User Group meetups and cloud security sessions. Engaging with cloud architects on AWS IAM least-privilege design, serverless incident response pipelines (Lambda & GuardDuty), and cloud-native security best practices.'
+    },
+    {
       icon: '📣',
       badge: 'COMMUNITY & TECH LEADERSHIP',
       role: 'Social Media & Tech Outreach Lead · GDSC NFSU',
@@ -14,14 +21,7 @@ const Involvement: React.FC = () => {
       badge: 'SOCIAL SERVICE & CITIZENSHIP',
       role: 'Active NSS Candidate & Social Outreach Volunteer',
       org: 'National Service Scheme (NSS)',
-      desc: 'Spearheaded community service initiatives, cyber awareness sessions for students, and social impact drives. Fostered high-pressure crisis coordination, empathy, and collaborative problem-solving across multidisciplinary volunteer groups.'
-    },
-    {
-      icon: '🏆',
-      badge: 'GLOBAL COMPETITIVE DEFENSE',
-      role: 'Top 3% Global Cybersecurity Ranker',
-      org: 'TryHackMe Worldwide Platform',
-      desc: 'Ranked in the top 3% of cybersecurity engineers globally. Solved over 100+ intensive labs spanning web exploitation, active directory attacks, blue team SOC telemetry analysis, network defense, and buffer overflows.'
+      desc: 'Spearheaded community service initiatives, cyber awareness sessions for students, and social impact drives. Fostered crisis coordination, empathy, and collaborative problem-solving across multidisciplinary volunteer groups.'
     },
     {
       icon: '🛡️',
@@ -29,6 +29,13 @@ const Involvement: React.FC = () => {
       role: 'Cybersecurity Workshop Speaker & CTF Organizer',
       org: 'NFSU Student Cyber Cell',
       desc: 'Conducted hands-on sessions on basic digital forensics, password cracking countermeasures, and safe web practices for university peers, introducing newcomers to forensic tools and ethical hacking fundamentals.'
+    },
+    {
+      icon: '🏆',
+      badge: 'GLOBAL COMPETITIVE DEFENSE',
+      role: 'Top 3% Global Cybersecurity Practitioner',
+      org: 'TryHackMe Worldwide Platform',
+      desc: 'Ranked in the top 3% of cybersecurity engineers globally. Solved over 100+ challenge labs spanning web exploitation, active directory attacks, blue team SOC telemetry analysis, and network defense.'
     }
   ];
 
@@ -38,7 +45,7 @@ const Involvement: React.FC = () => {
       <div className="sec-h">Extracurricular & Community Involvement</div>
       <div className="sec-rule"></div>
       <p className="inv-intro">
-        Beyond engineering — leading tech communities, mentoring peers in cyber defense, and participating in impactful social initiatives.
+        Beyond the terminal — actively engaging in the AWS Community, leading GDSC student initiatives, mentoring peers in cyber defense, and driving impactful social outreach.
       </p>
 
       <div className="inv-grid">

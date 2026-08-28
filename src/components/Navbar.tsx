@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  scrollStage?: string;
+  scrollProgress?: number;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ scrollStage = 'Setting Sail', scrollProgress = 0 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -8,7 +13,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -17,9 +22,19 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className={scrolled ? 'nav-scrolled' : ''}>
-        <a href="#hero-s" className="nav-logo" onClick={closeMobileMenu}>
-          CHIN<em>MAYI</em> BHISE
-        </a>
+        <div className="nav-brand-wrap">
+          <a href="#hero-s" className="nav-logo" onClick={closeMobileMenu}>
+            CHIN<em>MAYI</em> BHISE
+          </a>
+          
+          {/* Integrated Grand Line Log Pose (Never overlaps buttons) */}
+          {scrollProgress > 2 && (
+            <div className="nav-log-pose-badge">
+              <span className="nlp-icon">🧭</span>
+              <span className="nlp-text">{scrollStage} · {scrollProgress}%</span>
+            </div>
+          )}
+        </div>
 
         {/* Desktop Links */}
         <ul className="nav-links">
@@ -67,6 +82,14 @@ const Navbar: React.FC = () => {
           <span className="mnd-title">⚔️ NAVIGATION</span>
           <button type="button" className="mnd-close" onClick={closeMobileMenu}>✕</button>
         </div>
+
+        {scrollProgress > 0 && (
+          <div className="mnd-log-pose">
+            <span>🧭 GRAND LINE LOG POSE:</span>
+            <strong>{scrollStage} ({scrollProgress}%)</strong>
+          </div>
+        )}
+
         <ul className="mnd-links">
           <li><a href="#about-s" onClick={closeMobileMenu}>📜 About & Dossier</a></li>
           <li><a href="#domains-s" onClick={closeMobileMenu}>🛡️ Security Domains (SOC/VAPT/DFIR)</a></li>
@@ -75,6 +98,7 @@ const Navbar: React.FC = () => {
           <li><a href="#exp-s" onClick={closeMobileMenu}>🏛️ Experience & Internships</a></li>
           <li><a href="#certs-s" onClick={closeMobileMenu}>🏅 Certifications & Badges (12+)</a></li>
           <li><a href="#edu-s" onClick={closeMobileMenu}>🎓 Academic Foundation (NFSU)</a></li>
+          <li><a href="#inv-s" onClick={closeMobileMenu}>🤝 Extracurricular & AWS</a></li>
           <li><a href="#contact-s" onClick={closeMobileMenu}>📡 Get In Touch</a></li>
         </ul>
         <div className="mnd-footer">

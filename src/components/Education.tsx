@@ -43,7 +43,7 @@ const Education: React.FC = () => {
 
           <div className="edu-meta">
             <span>📅 2022 – 2027 (5-Year Integrated Program)</span>
-            <span>📍 Maharashtra / Gujarat, India</span>
+            <span>📍 Gandhinagar, Gujarat, India</span>
             <span>🎯 Focus: Offensive & Defensive Cyber Operations</span>
           </div>
 
