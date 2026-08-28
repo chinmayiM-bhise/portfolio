@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [posterMode, setPosterMode] = useState<'bounty' | 'tactical'>('bounty');
+  const [posterMode, setPosterMode] = useState<'wanted' | 'tactical'>('wanted');
   const cardRef = useRef<HTMLDivElement>(null);
 
   const lines = [
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
             <div className="tape tl"></div>
             <div className="tape tr"></div>
 
-            {posterMode === 'bounty' ? (
+            {posterMode === 'wanted' ? (
               <div className="wanted-poster anime-bounty-card">
                 <div className="wp-swords">🗡️⚔️🗡️</div>
                 <div className="wp-header">WANTED</div>
@@ -94,12 +94,9 @@ const Hero: React.FC = () => {
                 <div className="wp-name">CHINMAYI BHISE</div>
                 <div className="wp-title">THE CYBER NAVIGATOR</div>
                 
-                <div className="wp-bounty-container">
-                  <div className="wp-bounty-symbol">฿</div>
-                  <div className="wp-bounty">3,000,000,000-</div>
-                </div>
-                <div className="wp-bounty-clarity">
-                  REWARD: 3 BILLION BERRIES (ONE PIECE LORE 🏴‍☠️)
+                <div className="wp-rank-container">
+                  <div className="wp-rank-badge">SPECIAL GRADE DEFENDER</div>
+                  <div className="wp-rank-sub">THREAT MITIGATION · S-RANK ELITE</div>
                 </div>
 
                 <div className="wp-marine-footer">
@@ -153,10 +150,10 @@ const Hero: React.FC = () => {
             <div className="poster-mode-switcher">
               <button
                 type="button"
-                className={`pms-btn ${posterMode === 'bounty' ? 'active' : ''}`}
-                onClick={() => setPosterMode('bounty')}
+                className={`pms-btn ${posterMode === 'wanted' ? 'active' : ''}`}
+                onClick={() => setPosterMode('wanted')}
               >
-                🏴‍☠️ Luffy Bounty (3B ฿)
+                🏴‍☠️ Wanted Poster
               </button>
               <button
                 type="button"

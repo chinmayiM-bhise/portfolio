@@ -468,7 +468,7 @@ nav.nav-scrolled {
   cursor: pointer;
 }
 
-/* Authentic One Piece Luffy Emperor Bounty Poster */
+/* Authentic One Piece Wanted Poster (Amount Removed) */
 .wanted-poster.anime-bounty-card {
   background: #f3e8c9;
   background-image:
@@ -568,39 +568,31 @@ nav.nav-scrolled {
   text-transform: uppercase;
 }
 
-.wp-bounty-container {
+.wp-rank-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
   border-top: 1px solid rgba(26, 18, 8, 0.4);
-  padding-top: 4px;
+  padding-top: 6px;
+  margin-bottom: 8px;
 }
 
-.wp-bounty-symbol {
+.wp-rank-badge {
   font-family: 'Cinzel', serif;
-  font-size: 22px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #1a1208;
+  letter-spacing: 1.5px;
 }
 
-.wp-bounty {
-  font-family: 'Cinzel', serif;
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
-  color: #1a1208;
-  letter-spacing: 1px;
-}
-
-.wp-bounty-clarity {
+.wp-rank-sub {
   font-family: 'Cinzel', serif;
   font-size: 8px;
   letter-spacing: 1px;
   text-align: center;
   color: #6a4a15;
   margin-top: 2px;
-  margin-bottom: 6px;
   font-weight: 600;
 }
 
@@ -3066,10 +3058,6 @@ footer {
 
   .wp-img {
     height: 150px;
-  }
-
-  .wp-bounty {
-    font-size: 21px;
   }
 
   .stat-row {
