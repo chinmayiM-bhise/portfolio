@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import heroImg from '../assets/hero.png';
 
 const Hero: React.FC = () => {
@@ -7,6 +7,7 @@ const Hero: React.FC = () => {
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [posterMode, setPosterMode] = useState<'bounty' | 'tactical'>('bounty');
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const lines = [
     'SOC & SIEM Telemetry: Threats Detected, Neutralized. 🛡️',
@@ -14,7 +15,7 @@ const Hero: React.FC = () => {
     'Malware Analysis: Reverse Engineering Obfuscated Payloads. 🦠',
     'IoT & OT/ICS Security: Defending Smart Firmware & SCADA PLCs. 📡',
     'Digital Forensics: Chain of Custody & Judicial Artifact Triage. 🔬',
-    'Top 3% Globally on TryHackMe — Continuous Combat Readiness. 🏆',
+    'CNSP & CAP Certified: Network Defense & Application Hardening. 🌐',
     'Nothing happened. And that is the absolute goal. 🗡️',
   ];
 
@@ -44,11 +45,35 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, lineIndex]);
 
+  // 3D Card Hover Perspective Effect
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  };
+
   return (
     <section id="hero-s" style={{ position: 'relative', zIndex: 2 }}>
       <div id="hero">
         <div className="hero-left">
-          <div className="wanted-wrap">
+          <div
+            className="wanted-wrap"
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transition: 'transform 0.15s ease-out' }}
+          >
             <div className="wanted-glow"></div>
             <div className="tape tl"></div>
             <div className="tape tr"></div>
@@ -106,7 +131,11 @@ const Hero: React.FC = () => {
                   </div>
                   <div className="tic-row">
                     <span className="tic-lbl">INSTITUTE:</span>
-                    <span className="tic-val">NFSU (Forensic Sciences Univ.)</span>
+                    <span className="tic-val">NFSU (National Forensic Sciences Univ.)</span>
+                  </div>
+                  <div className="tic-row">
+                    <span className="tic-lbl">CREDENTIALS:</span>
+                    <span className="tic-val">CAP · CNSP · FORTINET NSE</span>
                   </div>
                   <div className="tic-row">
                     <span className="tic-lbl">STATUS:</span>
@@ -157,7 +186,7 @@ const Hero: React.FC = () => {
           </div>
 
           <p className="hero-bio">
-            Integrated B.Tech + M.Tech Cybersecurity student at <strong>National Forensic Sciences University (NFSU)</strong>. Specializing in <strong>SOC operations, VAPT, malware reverse engineering, IoT/OT-ICS security</strong>, and <strong>digital forensics</strong>. Proven hands-on track record with Uttar Pradesh Police digital forensics casework and Global Top 3% standing on TryHackMe.
+            Integrated B.Tech + M.Tech Cybersecurity student at <strong>National Forensic Sciences University (NFSU)</strong>. Specializing in <strong>SOC operations, VAPT, malware reverse engineering, IoT/OT-ICS security</strong>, and <strong>digital forensics</strong>. Proven experience with Uttar Pradesh Police digital forensics casework and accredited with CAP, CNSP, and Fortinet certifications.
           </p>
 
           <div className="hero-chips">
@@ -167,7 +196,7 @@ const Hero: React.FC = () => {
             <span className="chip highlight">📡 IoT & Firmware</span>
             <span className="chip highlight">🏭 OT / SCADA Defense</span>
             <span className="chip highlight">🔬 Digital Forensics (DFIR)</span>
-            <span className="chip">🏆 Top 3% TryHackMe</span>
+            <span className="chip">📜 CAP & CNSP Certified</span>
             <span className="chip">🎓 8.82 CGPA @ NFSU</span>
           </div>
 
@@ -175,11 +204,19 @@ const Hero: React.FC = () => {
             <a href="#domains-s" className="btn btn-primary">
               Explore Battle Stations ⚡
             </a>
+            <a
+              href="https://github.com/chinmayiM-bhise"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
+              GitHub 🐙
+            </a>
             <a href="#proj-s" className="btn btn-outline">
-              View Projects (8) ↗
+              Projects (8) ↗
             </a>
             <a href="#contact-s" className="btn btn-outline">
-              Get In Touch 📡
+              Contact 📡
             </a>
           </div>
         </div>

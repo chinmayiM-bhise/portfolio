@@ -34,6 +34,15 @@ const Navbar: React.FC = () => {
         </ul>
 
         <div className="nav-actions">
+          <a
+            href="https://github.com/chinmayiM-bhise"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-github-btn"
+            title="GitHub Profile"
+          >
+            🐙 GitHub
+          </a>
           <a href="#contact-s" className="nav-cta-btn">
             Connect ⚡
           </a>
@@ -64,12 +73,25 @@ const Navbar: React.FC = () => {
           <li><a href="#skills-s" onClick={closeMobileMenu}>⚔️ Skills & Arsenal</a></li>
           <li><a href="#proj-s" onClick={closeMobileMenu}>🗺️ Projects (8)</a></li>
           <li><a href="#exp-s" onClick={closeMobileMenu}>🏛️ Experience & Internships</a></li>
-          <li><a href="#certs-s" onClick={closeMobileMenu}>🏅 Certifications & Badges</a></li>
+          <li><a href="#certs-s" onClick={closeMobileMenu}>🏅 Certifications & Badges (12+)</a></li>
           <li><a href="#edu-s" onClick={closeMobileMenu}>🎓 Academic Foundation (NFSU)</a></li>
           <li><a href="#contact-s" onClick={closeMobileMenu}>📡 Get In Touch</a></li>
         </ul>
         <div className="mnd-footer">
-          <a href="mailto:chinmayibhise2004@gmail.com" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+          <a
+            href="https://github.com/chinmayiM-bhise"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+            style={{ width: '100%', justifyContent: 'center', marginBottom: '8px' }}
+          >
+            GitHub Profile 🐙
+          </a>
+          <a
+            href="mailto:chinmayibhise2004@gmail.com"
+            className="btn btn-primary"
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
             Direct Email ✉️
           </a>
         </div>

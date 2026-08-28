@@ -153,7 +153,7 @@ nav.nav-scrolled {
 
 .nav-links {
   display: flex;
-  gap: 1.6rem;
+  gap: 1.5rem;
   list-style: none;
 }
 
@@ -191,16 +191,39 @@ nav.nav-scrolled {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.nav-github-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--silver);
+  padding: 6px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-github-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--silver);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .nav-cta-btn {
   background: var(--zoro-dim);
   border: 1px solid var(--border2);
   color: var(--zoro);
-  padding: 7px 16px;
+  padding: 6px 14px;
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
@@ -317,7 +340,7 @@ nav.nav-scrolled {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
   overflow-y: auto;
 }
@@ -343,7 +366,7 @@ nav.nav-scrolled {
 }
 
 .mnd-footer {
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
   border-top: 1px solid var(--border);
 }
 
@@ -442,6 +465,7 @@ nav.nav-scrolled {
   align-items: center;
   width: 100%;
   max-width: 330px;
+  cursor: pointer;
 }
 
 /* Authentic One Piece Luffy Emperor Bounty Poster */
@@ -927,7 +951,7 @@ h1.hero-name span {
 
 .hero-btns {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
@@ -1041,7 +1065,6 @@ h1.hero-name span {
   color: var(--zoro-bright);
 }
 
-/* Terminal Quick Action Bar */
 .t-quick-bar {
   background: #0c1012;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -1586,11 +1609,12 @@ h1.hero-name span {
   background: var(--bg2);
   padding: 1.6rem 1.2rem;
   text-align: center;
-  transition: background 0.25s;
+  transition: all 0.25s;
 }
 
 .stat-cell:hover {
   background: var(--bg3);
+  transform: scale(1.02);
 }
 
 .stat-n {
@@ -1600,6 +1624,7 @@ h1.hero-name span {
   color: var(--zoro);
   display: block;
   line-height: 1.2;
+  text-shadow: 0 0 10px var(--zoro-glow);
 }
 
 .stat-l {
@@ -2883,7 +2908,7 @@ footer {
 
 .footer-links-group a {
   font-family: 'Cinzel', serif;
-  font-size: 9px;
+  font-size: 9.5px;
   letter-spacing: 1.5px;
   color: var(--silver2);
   text-decoration: none;

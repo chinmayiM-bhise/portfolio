@@ -23,6 +23,8 @@ const Footer: React.FC = () => {
             <a href="#proj-s">Projects</a>
             <a href="#exp-s">Experience</a>
             <a href="#certs-s">Certifications</a>
+            <a href="https://github.com/chinmayiM-bhise" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://linkedin.com/in/chinmayi-bhise" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             <a href="#contact-s">Contact</a>
           </div>
 
@@ -33,10 +35,10 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <div className="footer-sub">
-            National Forensic Sciences University (NFSU) · Maharashtra, India · <em>"Nothing happened."</em>
+            National Forensic Sciences University (NFSU) · Maharashtra / Gujarat, India · <em>"Nothing happened."</em>
           </div>
           <div className="footer-copy">
-            © {new Date().getFullYear()} Chinmayi Bhise. Handcrafted with React & Cybersecurity Discipline.
+            © {new Date().getFullYear()} Chinmayi Bhise. Handcrafted with React & Three-Sword Cyber Discipline.
           </div>
         </div>
       </div>

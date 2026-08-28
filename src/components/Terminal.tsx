@@ -16,9 +16,9 @@ const Terminal: React.FC = () => {
           <div><span className="t-v">institution</span>  → "National Forensic Sciences University (NFSU)"</div>
           <div><span className="t-v">degree</span>       → "Integrated B.Tech + M.Tech in CSE (Cybersecurity)"</div>
           <div><span className="t-v">academic_cgpa</span>→ "8.82 / 10.0"</div>
-          <div><span className="t-v">global_rank</span>  → <span className="t-out">"Top 3% — TryHackMe Worldwide 🏆"</span></div>
+          <div><span className="t-v">certifications</span>→ ["CAP (AppSec)", "CNSP (Network Security)", "Fortinet NSE 1-3", "Google Cyber", "Security Blue Team", "arcX CTI"]</div>
           <div><span className="t-v">core_domains</span> → ["SOC / SIEM", "VAPT", "Malware RE", "IoT Security", "OT/ICS SCADA", "DFIR"]</div>
-          <div><span className="t-v">experience</span>   → "Digital Forensics Intern @ Uttar Pradesh Police"</div>
+          <div><span className="t-v">internships</span>   → ["Digital Forensics @ UP Police", "Cybersecurity @ ShadowFox", "Cyber Defense @ NFSU"]</div>
           <div><span className="t-v">status</span>       → <span className="t-out">"Available for Cybersecurity Roles ✓"</span></div>
         </div>
       )
@@ -50,7 +50,8 @@ const Terminal: React.FC = () => {
             <div>▸ <span className="t-p">iot</span>         - IoT firmware extraction & hardware hacking</div>
             <div>▸ <span className="t-p">ot</span>          - OT/ICS & SCADA Modbus protocol defense</div>
             <div>▸ <span className="t-p">projects</span>    - Summary of all 8 core projects</div>
-            <div>▸ <span className="t-p">certs</span>       - List of 9 verified credentials</div>
+            <div>▸ <span className="t-p">certs</span>       - List of 12+ verified credentials</div>
+            <div>▸ <span className="t-p">github</span>      - View GitHub repository link</div>
             <div>▸ <span className="t-p">contact</span>     - Direct contact channels & social links</div>
             <div>▸ <span className="t-p">clear</span>       - Clear terminal screen</div>
           </div>
@@ -61,8 +62,8 @@ const Terminal: React.FC = () => {
         res = (
           <div>
             <div style={{ color: 'var(--zoro)', fontWeight: 'bold' }}>CHINMAYI BHISE — Cybersecurity Engineer</div>
-            <div>Integrated B.Tech + M.Tech student at National Forensic Sciences University (NFSU).</div>
-            <div>Specializing in both Offensive VAPT & Defensive SOC / DFIR with hands-on law enforcement casework.</div>
+            <div>Integrated B.Tech + M.Tech student at National Forensic Sciences University (NFSU), maintaining 8.82 CGPA.</div>
+            <div>Specializing in Offensive VAPT, Defensive SOC, Reverse Engineering, and Law Enforcement Digital Forensics.</div>
           </div>
         );
         break;
@@ -71,7 +72,7 @@ const Terminal: React.FC = () => {
         res = (
           <div className="t-list">
             <div>1. 🛡️ <span className="t-p">SOC & Threat Hunting</span> (Splunk, Wazuh, MITRE ATT&CK, EDR)</div>
-            <div>2. ⚔️ <span className="t-p">VAPT & AppSec</span> (Burp Suite Pro, OWASP Top 10, API Pentesting)</div>
+            <div>2. ⚔️ <span className="t-p">VAPT & AppSec</span> (CAP Certified, Burp Suite Pro, OWASP Top 10)</div>
             <div>3. 🦠 <span className="t-p">Malware Analysis & RE</span> (Ghidra, x64dbg, PEStudio, YARA)</div>
             <div>4. 📡 <span className="t-p">IoT & Firmware Security</span> (Binwalk, QEMU, UART/JTAG, BLE)</div>
             <div>5. 🏭 <span className="t-p">OT / ICS & SCADA Defense</span> (Modbus TCP, DNP3, Purdue Model)</div>
@@ -96,8 +97,8 @@ const Terminal: React.FC = () => {
           <div>
             <div className="t-p">⚔️ Vulnerability Assessment & Penetration Testing:</div>
             <div>• Certified AppSec Practitioner (CAP) · Web & API Security</div>
+            <div>• Certified Network Security Practitioner (CNSP) · Perimeter Defense</div>
             <div>• Tools: Burp Suite Pro, Metasploit, Nmap, SQLMap, OWASP ZAP</div>
-            <div>• Top 3% Global TryHackMe rank across hundreds of vulnerable target machines</div>
           </div>
         );
         break;
@@ -154,16 +155,26 @@ const Terminal: React.FC = () => {
       case 'certs':
         res = (
           <div>
-            <div className="t-p">🏅 9 Verified Certifications:</div>
+            <div className="t-p">🏅 12+ Verified Credentials & Specializations:</div>
             <div>• Certified AppSec Practitioner (CAP) — The SecOps Group</div>
-            <div>• Google Cybersecurity Professional Certificate</div>
+            <div>• Certified Network Security Practitioner (CNSP) — The SecOps Group</div>
+            <div>• Fortinet Network Security Expert (NSE 1, 2 & 3) — Fortinet</div>
+            <div>• Google Cybersecurity Professional Specialization</div>
             <div>• Threat Hunting Specialist — Security Blue Team</div>
-            <div>• Threat Intelligence Analyst — arcX</div>
-            <div>• AWS Cloud Security & Foundations (Semester 1 Badge)</div>
-            <div>• Career Essentials in Cybersecurity — Microsoft & LinkedIn</div>
+            <div>• Threat Intelligence Analyst (CTI 101) — arcX</div>
             <div>• Web Application Security & SQLi Defense — EC-Council</div>
-            <div>• Digital Forensics & Chain-of-Custody — NFSU</div>
-            <div>• TryHackMe Global Top 3% Combat Badge</div>
+            <div>• Blockchain Security & Cryptographic Forensics — NFSU</div>
+            <div>• Big Data & Data Science in Cyber Intelligence — NFSU</div>
+            <div>• Deloitte Australia Cyber Incident Response Simulation</div>
+          </div>
+        );
+        break;
+
+      case 'github':
+        res = (
+          <div>
+            <div className="t-p">🐙 GitHub Repositories:</div>
+            <div>• Profile: <a href="https://github.com/chinmayiM-bhise" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--zoro)', textDecoration: 'underline' }}>github.com/chinmayiM-bhise</a></div>
           </div>
         );
         break;
@@ -173,9 +184,9 @@ const Terminal: React.FC = () => {
           <div>
             <div className="t-p">📡 Communication Channels:</div>
             <div>• Email: chinmayibhise2004@gmail.com</div>
+            <div>• GitHub: github.com/chinmayiM-bhise</div>
             <div>• LinkedIn: linkedin.com/in/chinmayi-bhise</div>
-            <div>• Phone: +91 9172650095</div>
-            <div>• Location: Maharashtra, India / Open to Relocation</div>
+            <div>• University: National Forensic Sciences University (NFSU)</div>
           </div>
         );
         break;
@@ -216,7 +227,7 @@ const Terminal: React.FC = () => {
         {/* Quick Command Action Bar */}
         <div className="t-quick-bar">
           <span className="t-quick-lbl">EXECUTE:</span>
-          {['help', 'whoami', 'domains', 'soc', 'vapt', 'malware', 'iot', 'ot', 'projects', 'certs', 'clear'].map((cmd) => (
+          {['help', 'whoami', 'domains', 'soc', 'vapt', 'malware', 'iot', 'ot', 'projects', 'certs', 'github', 'clear'].map((cmd) => (
             <button
               key={cmd}
               type="button"

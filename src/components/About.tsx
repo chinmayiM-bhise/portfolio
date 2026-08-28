@@ -1,8 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const About: React.FC = () => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [stats, setStats] = useState({ cgpa: 0, certs: 0, projects: 0, internships: 0, domains: 0 });
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+
+          const duration = 1500;
+          const startTime = performance.now();
+
+          const updateCounter = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+
+            setStats({
+              cgpa: parseFloat((easeOut * 8.82).toFixed(2)),
+              certs: Math.floor(easeOut * 12),
+              projects: Math.floor(easeOut * 8),
+              internships: Math.floor(easeOut * 4),
+              domains: Math.floor(easeOut * 6),
+            });
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              setStats({ cgpa: 8.82, certs: 12, projects: 8, internships: 4, domains: 6 });
+            }
+          };
+
+          requestAnimationFrame(updateCounter);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   return (
-    <section className="sec" id="about-s">
+    <section className="sec" id="about-s" ref={sectionRef}>
       <div className="sec-eyebrow">Dossier & Philosophy</div>
       <div className="sec-h">About Me</div>
       <div className="sec-rule"></div>
@@ -21,21 +64,21 @@ const About: React.FC = () => {
               <span className="sp-icon">⚔️</span>
               <div>
                 <strong>Offensive Prowess (VAPT & RE)</strong>
-                <p>Proactively uncovering zero-day vulnerabilities, dissecting malware, and testing API/Web surfaces before attackers strike.</p>
+                <p>Proactively uncovering zero-day vulnerabilities, reverse engineering malware, and auditing web/API attack surfaces before adversaries strike.</p>
               </div>
             </div>
             <div className="sword-pillar">
               <span className="sp-icon">🛡️</span>
               <div>
                 <strong>Defensive Resilience (SOC & OT/ICS)</strong>
-                <p>Deploying automated serverless threat hunting, tuning SIEM detection rules, and isolating critical SCADA infrastructure.</p>
+                <p>Deploying automated serverless threat hunting, tuning SIEM detection rules, and isolating critical SCADA/Modbus infrastructure.</p>
               </div>
             </div>
             <div className="sword-pillar">
               <span className="sp-icon">🔬</span>
               <div>
                 <strong>Forensic Integrity (DFIR & Evidence)</strong>
-                <p>Grounded in real police casework at UP Police — preserving strict chain-of-custody and reconstructing breach timelines.</p>
+                <p>Grounded in real police casework at Uttar Pradesh Police — preserving strict chain-of-custody and reconstructing breach timelines.</p>
               </div>
             </div>
           </div>
@@ -49,39 +92,40 @@ const About: React.FC = () => {
         <div className="about-stats-container">
           <div className="stat-row">
             <div className="stat-cell">
-              <span className="stat-n">8.82</span>
+              <span className="stat-n">{stats.cgpa.toFixed(2)}</span>
               <span className="stat-l">Academic CGPA (NFSU)</span>
             </div>
             <div className="stat-cell">
+              <span className="stat-n">{stats.certs}+</span>
+              <span className="stat-l">Industry Certifications</span>
+            </div>
+            <div className="stat-cell">
+              <span className="stat-n">{stats.internships}</span>
+              <span className="stat-l">Professional Internships</span>
+            </div>
+            <div className="stat-cell">
+              <span className="stat-n">{stats.projects}+</span>
+              <span className="stat-l">Security Deployments</span>
+            </div>
+            <div className="stat-cell">
+              <span className="stat-n">{stats.domains}</span>
+              <span className="stat-l">Core Cyber Battle Stations</span>
+            </div>
+            <div className="stat-cell">
               <span className="stat-n">Top 3%</span>
-              <span className="stat-l">TryHackMe Global</span>
-            </div>
-            <div className="stat-cell">
-              <span className="stat-n">8+</span>
-              <span className="stat-l">Security Projects</span>
-            </div>
-            <div className="stat-cell">
-              <span className="stat-n">9</span>
-              <span className="stat-l">Verified Certifications</span>
-            </div>
-            <div className="stat-cell">
-              <span className="stat-n">6</span>
-              <span className="stat-l">Core Cyber Domains</span>
-            </div>
-            <div className="stat-cell">
-              <span className="stat-n">100+</span>
-              <span className="stat-l">CTF Labs Solved</span>
+              <span className="stat-l">Global Cyber Practitioner</span>
             </div>
           </div>
 
           <div className="about-badges-callout">
-            <div className="abc-title">⚡ Operational Readiness:</div>
+            <div className="abc-title">⚡ Verified Operational Accreditations:</div>
             <div className="abc-tags">
-              <span className="tag">✓ UP Police Forensics Alum</span>
-              <span className="tag">✓ Certified AppSec (CAP)</span>
-              <span className="tag">✓ Google Cybersecurity Spec</span>
-              <span className="tag">✓ Security Blue Team Hunter</span>
-              <span className="tag">✓ AWS Cloud Security</span>
+              <span className="tag">✓ UP Police Digital Forensics Alum</span>
+              <span className="tag">✓ Certified AppSec Practitioner (CAP)</span>
+              <span className="tag">✓ Certified Network Security (CNSP)</span>
+              <span className="tag">✓ Fortinet Network Security Expert (NSE)</span>
+              <span className="tag">✓ Google Cybersecurity Specialist</span>
+              <span className="tag">✓ Security Blue Team Threat Hunter</span>
             </div>
           </div>
         </div>

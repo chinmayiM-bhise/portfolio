@@ -30,36 +30,50 @@ const experiences: ExperienceItem[] = [
     impact: 'Strengthened digital evidence traceability and compliance across active investigative casework.'
   },
   {
+    period: '2024',
+    badge: 'INDUSTRY INTERNSHIP',
+    role: 'Cybersecurity Intern',
+    organization: 'ShadowFox',
+    location: 'Remote, India',
+    domain: 'Vulnerability Assessment & Threat Analysis',
+    points: [
+      'Conducted web and network penetration testing against target environments, discovering input sanitization flaws and authentication bypasses.',
+      'Authored detailed vulnerability assessment reports with CVSS scoring, proof-of-concept exploit steps, and actionable remediation guidelines for engineering teams.',
+      'Analyzed emerging malware indicators and threat intelligence feeds to develop endpoint detection signatures.'
+    ],
+    skills: ['VAPT', 'Web Security', 'Burp Suite', 'Vulnerability Assessment', 'Remediation Advisory', 'Report Writing'],
+    impact: 'Identified and reported critical application vulnerabilities with prioritized patching playbooks.'
+  },
+  {
+    period: '2024',
+    badge: 'INDUSTRY INTERNSHIP',
+    role: 'Cybersecurity Intern',
+    organization: 'TechnoHacks EduTech',
+    location: 'Remote, India',
+    domain: 'Network Defense & Ethical Hacking',
+    points: [
+      'Implemented defensive firewall rules, network packet sniffing routines, and vulnerability scanning workflows using Nmap and Wireshark.',
+      'Researched attack surfaces in web protocols, demonstrating SQL injection and Cross-Site Scripting (XSS) exploit mitigations.',
+      'Collaborated on security hardening checklists for Linux server infrastructure and database access controls.'
+    ],
+    skills: ['Network Security', 'Nmap', 'Wireshark', 'Linux Hardening', 'SQL Injection Mitigation', 'Ethical Hacking'],
+    impact: 'Audited simulated network perimeters and drafted enterprise security hardening guidelines.'
+  },
+  {
     period: '2024 – Present',
-    badge: 'ACADEMIC & LAB PRACTICE',
+    badge: 'ACADEMIC & LAB RESEARCH',
     role: 'Security Operations & Threat Defense Researcher',
     organization: 'NFSU Cyber Defense & Forensics Labs',
     location: 'National Forensic Sciences University, India',
     domain: 'SOC Operations, Threat Hunting & Cloud Security',
     points: [
-      'Deployed and configured multi-node SIEM environments (Splunk, Wazuh) to monitor simulated enterprise networks, ingesting Windows Event Logs, Sysmon, and firewall traffic.',
+      'Configured and monitored multi-node SIEM environments (Splunk, Wazuh) to ingest Windows Event Logs, Sysmon telemetry, and firewall traffic.',
       'Crafted detection rules and hunting queries mapped directly to MITRE ATT&CK techniques (brute force, credential dumping, lateral movement, persistence).',
       'Developed serverless automated response scripts using AWS Lambda and CloudWatch to isolate compromised instances and revoke high-privilege IAM credentials within seconds.',
       'Executed industrial control system (ICS/SCADA) security simulations, auditing Modbus protocol communications for unauthorized PLC register tampering.'
     ],
     skills: ['Splunk', 'Wazuh', 'SIEM Rule Tuning', 'MITRE ATT&CK', 'AWS Cloud Security', 'Snort / Suricata', 'SCADA / Modbus'],
     impact: 'Engineered automated threat detection & incident triage workflows with zero-touch containment.'
-  },
-  {
-    period: '2023 – Present',
-    badge: 'GLOBAL COMPETITIVE DEFENSE',
-    role: 'Vulnerability Researcher & Offensive Security Practitioner',
-    organization: 'TryHackMe & Global Security Community',
-    location: 'Global Platform',
-    domain: 'VAPT, Web AppSec & CTF Operations',
-    points: [
-      'Achieved Top 3% Global Ranking on TryHackMe through rigorous hands-on execution across hundreds of real-world machines, CTF challenges, and red/blue team paths.',
-      'Conducted deep vulnerability assessments against web applications and APIs, exploiting and mitigating OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF, IDOR, Broken Authentication).',
-      'Performed static and dynamic binary reverse engineering using Ghidra and x64dbg, dissecting suspicious executables and writing custom YARA detection rules.',
-      'Researched cryptographic implementations, demonstrating small-modulus RSA attacks and socket-level Man-in-the-Middle (MITM) packet tampering.'
-    ],
-    skills: ['Top 3% TryHackMe', 'Burp Suite Pro', 'Metasploit', 'Ghidra', 'x64dbg', 'YARA', 'Network Pentesting', 'Python'],
-    impact: 'Consistently ranked in the top tier of worldwide cybersecurity practitioners with 100+ labs conquered.'
   }
 ];
 
@@ -70,7 +84,7 @@ const Experience: React.FC = () => {
       <div className="sec-h">Experience & Internships</div>
       <div className="sec-rule"></div>
       <p className="exp-intro">
-        From law enforcement forensics casework to offensive vulnerability research and cloud-native SOC engineering — grounded in rigorous standards and real-world execution.
+        From law enforcement digital forensics casework at UP Police to industry cybersecurity internships and NFSU threat research.
       </p>
 
       <div className="exp-timeline">

@@ -18,13 +18,13 @@ const Contact: React.FC = () => {
       <div className="contact-wrapper">
         <div className="contact-left">
           <p className="contact-intro">
-            Whether you are looking to hire a dedicated <strong>Cybersecurity Engineer</strong> (SOC, VAPT, DFIR, Malware, IoT/OT), collaborate on security research, or discuss bug bounty findings — my line is open!
+            Whether you are looking to hire a dedicated <strong>Cybersecurity Engineer</strong> (SOC, VAPT, DFIR, Malware RE, IoT/OT), collaborate on security research, or discuss bug bounty findings — my line is open!
           </p>
 
           <div className="contact-status-banner">
             <span className="csb-dot"></span>
             <div>
-              <strong>Current Status:</strong> Open to Full-Time Roles, Internships & Security Research
+              <strong>Current Status:</strong> Open to Full-Time Cybersecurity Roles, Internships & Research
             </div>
           </div>
 
@@ -47,6 +47,21 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="contact-item">
+              <span className="c-ico">🐙</span>
+              <div className="c-info">
+                <div className="c-lbl">GitHub Profile</div>
+                <a
+                  href="https://github.com/chinmayiM-bhise"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="c-val"
+                >
+                  github.com/chinmayiM-bhise ↗
+                </a>
+              </div>
+            </div>
+
+            <div className="contact-item">
               <span className="c-ico">💼</span>
               <div className="c-info">
                 <div className="c-lbl">LinkedIn Profile</div>
@@ -62,27 +77,10 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="contact-item">
-              <span className="c-ico">📱</span>
+              <span className="c-ico">🏛️</span>
               <div className="c-info">
-                <div className="c-lbl">Phone / WhatsApp</div>
-                <a href="tel:+919172650095" className="c-val">
-                  +91 9172650095
-                </a>
-              </div>
-              <button
-                type="button"
-                className="c-copy-btn"
-                onClick={() => copyToClipboard('+919172650095', 'phone')}
-              >
-                {copied === 'phone' ? 'Copied! ✓' : 'Copy'}
-              </button>
-            </div>
-
-            <div className="contact-item">
-              <span className="c-ico">⚔️</span>
-              <div className="c-info">
-                <div className="c-lbl">TryHackMe Profile</div>
-                <span className="c-val">Top 3% Global Ranking</span>
+                <div className="c-lbl">Location & University</div>
+                <span className="c-val">NFSU, Maharashtra / Gujarat, India (Open to Relocation)</span>
               </div>
             </div>
           </div>
@@ -95,7 +93,7 @@ const Contact: React.FC = () => {
               <h3>Send a Direct Dispatch</h3>
             </div>
             <p className="qmc-desc">
-              Have an urgent requirement or question? Click below to launch your email client directly with pre-filled details.
+              Have an opening, internship, or security research inquiry? Click below to launch your email client with pre-filled details.
             </p>
             <div className="qmc-actions">
               <a
@@ -103,6 +101,14 @@ const Contact: React.FC = () => {
                 className="btn btn-primary qmc-btn"
               >
                 Launch Secure Email ✉️
+              </a>
+              <a
+                href="https://github.com/chinmayiM-bhise"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline qmc-btn"
+              >
+                Explore GitHub Repositories 🐙
               </a>
               <a
                 href="https://linkedin.com/in/chinmayi-bhise"
