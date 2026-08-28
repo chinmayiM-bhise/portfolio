@@ -6,19 +6,21 @@ const Hero: React.FC = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const [posterMode, setPosterMode] = useState<'bounty' | 'tactical'>('bounty');
 
   const lines = [
-  'Finding Artifacts. Following Evidence. 🔎',
-  'Turning Logs into Stories 📜',
-  'Clouds Secure. Threats Detected. ☁️',
-  'Hunting Bugs Before They Hunt You 🐞',
-  'Top 3% on TryHackMe 🏆',
-  'Nothing happened. And that is the goal. 🛡️',
+    'SOC & SIEM Telemetry: Threats Detected, Neutralized. 🛡️',
+    'VAPT & AppSec: Finding Zero-Days Before Adversaries Do. ⚔️',
+    'Malware Analysis: Reverse Engineering Obfuscated Payloads. 🦠',
+    'IoT & OT/ICS Security: Defending Smart Firmware & SCADA PLCs. 📡',
+    'Digital Forensics: Chain of Custody & Judicial Artifact Triage. 🔬',
+    'Top 3% Globally on TryHackMe — Continuous Combat Readiness. 🏆',
+    'Nothing happened. And that is the absolute goal. 🗡️',
   ];
 
   useEffect(() => {
     const currentLine = lines[lineIndex];
-    const typeSpeed = isDeleting ? 35 : 80;
+    const typeSpeed = isDeleting ? 30 : 65;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
@@ -27,7 +29,6 @@ const Hero: React.FC = () => {
 
         if (charIndex >= currentLine.length) {
           setIsDeleting(true);
-          setTimeout(() => {}, 2200); // Pause at end
         }
       } else {
         setDisplayText(currentLine.slice(0, charIndex - 1));
@@ -38,10 +39,10 @@ const Hero: React.FC = () => {
           setLineIndex((prev) => (prev + 1) % lines.length);
         }
       }
-    }, charIndex >= currentLine.length && !isDeleting ? 2200 : typeSpeed);
+    }, charIndex >= currentLine.length && !isDeleting ? 2400 : typeSpeed);
 
     return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, lineIndex, lines]);
+  }, [charIndex, isDeleting, lineIndex]);
 
   return (
     <section id="hero-s" style={{ position: 'relative', zIndex: 2 }}>
@@ -51,39 +52,135 @@ const Hero: React.FC = () => {
             <div className="wanted-glow"></div>
             <div className="tape tl"></div>
             <div className="tape tr"></div>
-            <div className="wanted-poster">
-              <div className="wp-swords">🗡️⚔️🗡️</div>
-              <div className="wp-header">WANTED</div>
-              <div className="wp-img">
-                <img src={heroImg} alt="Chinmayi Bhise" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+
+            {posterMode === 'bounty' ? (
+              <div className="wanted-poster anime-bounty-card">
+                <div className="wp-swords">🗡️⚔️🗡️</div>
+                <div className="wp-header">WANTED</div>
+                <div className="wp-doa">DEAD OR ALIVE</div>
+                <div className="wp-img">
+                  <img
+                    src={heroImg}
+                    alt="Chinmayi Bhise"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="wp-img-overlay"></div>
+                </div>
+                <div className="wp-name">CHINMAYI BHISE</div>
+                <div className="wp-title">THE CYBER NAVIGATOR</div>
+                
+                <div className="wp-bounty-container">
+                  <div className="wp-bounty-symbol">฿</div>
+                  <div className="wp-bounty">3,000,000,000-</div>
+                </div>
+                <div className="wp-bounty-clarity">
+                  REWARD: 3 BILLION BERRIES (ONE PIECE LORE 🏴‍☠️)
+                </div>
+
+                <div className="wp-marine-footer">
+                  <span>MARINE HQ</span>
+                  <span>SPECIAL CYBER DIVISION</span>
+                </div>
+                <div className="wp-stamp">RECRUIT ALIVE</div>
               </div>
-              <div className="wp-name">CHINMAYI BHISE</div>
-              <div className="wp-title">The Cyber Navigator</div>
-              <div className="wp-bounty-lbl">Bounty</div>
-              <div className="wp-bounty">₿ 878,000,000</div>
-              <div className="wp-stamp">ALIVE</div>
+            ) : (
+              <div className="tactical-id-card">
+                <div className="tic-header">
+                  <span className="tic-live-dot"></span>
+                  <span>CYBER DEFENSE INTELLIGENCE · ID-PASS</span>
+                </div>
+                <div className="tic-img-wrap">
+                  <img
+                    src={heroImg}
+                    alt="Chinmayi Bhise"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="tic-scanline"></div>
+                </div>
+                <div className="tic-name">CHINMAYI BHISE</div>
+                <div className="tic-rank">CLEARANCE: LEVEL 5 (TOP SECRET)</div>
+                <div className="tic-details">
+                  <div className="tic-row">
+                    <span className="tic-lbl">DOMAINS:</span>
+                    <span className="tic-val">SOC · VAPT · MALWARE · IOT · OT</span>
+                  </div>
+                  <div className="tic-row">
+                    <span className="tic-lbl">INSTITUTE:</span>
+                    <span className="tic-val">NFSU (Forensic Sciences Univ.)</span>
+                  </div>
+                  <div className="tic-row">
+                    <span className="tic-lbl">STATUS:</span>
+                    <span className="tic-val highlight">ACTIVE & DEPLOYABLE ✓</span>
+                  </div>
+                </div>
+                <div className="tic-barcodes">
+                  <div className="tic-bars"></div>
+                  <span className="tic-code">NFSU-SEC-2026-CB</span>
+                </div>
+              </div>
+            )}
+
+            {/* Poster Mode Switcher */}
+            <div className="poster-mode-switcher">
+              <button
+                type="button"
+                className={`pms-btn ${posterMode === 'bounty' ? 'active' : ''}`}
+                onClick={() => setPosterMode('bounty')}
+              >
+                🏴‍☠️ Luffy Bounty (3B ฿)
+              </button>
+              <button
+                type="button"
+                className={`pms-btn ${posterMode === 'tactical' ? 'active' : ''}`}
+                onClick={() => setPosterMode('tactical')}
+              >
+                🛡️ Tactical Cyber ID
+              </button>
             </div>
           </div>
         </div>
 
         <div className="hero-right">
-          <div className="hero-tag">Cybersecurity Engineer</div>
-          <h1 className="hero-name">Building Shields.<br /><span>Breaking Barriers.</span></h1>
+          <div className="hero-tag">
+            <span className="hero-tag-icon">⚡</span>
+            <span>CYBERSECURITY ENGINEER · OFFENSIVE & DEFENSIVE</span>
+          </div>
+
+          <h1 className="hero-name">
+            Building Shields.<br />
+            <span>Breaking Adversaries.</span>
+          </h1>
+
           <div className="hero-typing" id="hero-typ">
-            {displayText}<span className="cursor-t"></span>
+            {displayText}
+            <span className="cursor-t"></span>
           </div>
+
           <p className="hero-bio">
-            Integrated B.Tech + M.Tech student at <strong>National Forensic Sciences University</strong>, specializing in Cybersecurity. I work across digital forensics, cloud security, and vulnerability research — finding problems before the bad guys do.
+            Integrated B.Tech + M.Tech Cybersecurity student at <strong>National Forensic Sciences University (NFSU)</strong>. Specializing in <strong>SOC operations, VAPT, malware reverse engineering, IoT/OT-ICS security</strong>, and <strong>digital forensics</strong>. Proven hands-on track record with Uttar Pradesh Police digital forensics casework and Global Top 3% standing on TryHackMe.
           </p>
+
           <div className="hero-chips">
-            <span className="chip">Digital Forensics</span>
-            <span className="chip">Cloud Security</span>
-            <span className="chip">Penetration Testing</span>
-            <span className="chip">Top 3% TryHackMe</span>
+            <span className="chip highlight">🛡️ SOC & Threat Hunting</span>
+            <span className="chip highlight">⚔️ VAPT & AppSec</span>
+            <span className="chip highlight">🦠 Malware Analysis</span>
+            <span className="chip highlight">📡 IoT & Firmware</span>
+            <span className="chip highlight">🏭 OT / SCADA Defense</span>
+            <span className="chip highlight">🔬 Digital Forensics (DFIR)</span>
+            <span className="chip">🏆 Top 3% TryHackMe</span>
+            <span className="chip">🎓 8.82 CGPA @ NFSU</span>
           </div>
+
           <div className="hero-btns">
-            <a href="#proj-s" className="btn btn-primary">View Projects ↗</a>
-            <a href="#contact-s" className="btn btn-outline">Get In Touch</a>
+            <a href="#domains-s" className="btn btn-primary">
+              Explore Battle Stations ⚡
+            </a>
+            <a href="#proj-s" className="btn btn-outline">
+              View Projects (8) ↗
+            </a>
+            <a href="#contact-s" className="btn btn-outline">
+              Get In Touch 📡
+            </a>
           </div>
         </div>
       </div>

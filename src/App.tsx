@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Canvas from './components/Canvas';
 import Terminal from './components/Terminal';
+import SecurityDomains from './components/SecurityDomains';
 import About from './components/About';
 import Education from './components/Education';
 import Skills from './components/Skills';
@@ -28,74 +29,31 @@ const Wave: React.FC<{ inverted?: boolean }> = ({ inverted }) => (
 );
 
 const App: React.FC = () => {
-  const [musicOn, setMusicOn] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollStage, setScrollStage] = useState('Setting Sail');
   const [toast, setToast] = useState({ show: false, icon: '⚔️', msg: 'Nothing Happened' });
   const [swordMsg, setSwordMsg] = useState({ show: false, title: '', body: '' });
   const [mi, setMi] = useState(0);
 
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const noteTimerRef = useRef<number | null>(null);
-  const noteIdxRef = useRef(0);
   const seenSections = useRef(new Set<string>());
-
-  const melody = [
-    262, 294, 330, 349, 392, 440, 494, 523,
-    494, 440, 392, 349, 330, 294, 262, 0,
-    330, 392, 440, 494, 523, 587, 659, 698,
-    659, 587, 523, 494, 440, 392, 330, 0
-  ];
-
-  const playNote = (freq: number, dur: number) => {
-    if (!freq || !audioCtxRef.current) return;
-    const osc = audioCtxRef.current.createOscillator();
-    const gain = audioCtxRef.current.createGain();
-    osc.type = 'square';
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0.06, audioCtxRef.current.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtxRef.current.currentTime + dur * 0.9);
-    osc.connect(gain);
-    gain.connect(audioCtxRef.current.destination);
-    osc.start();
-    osc.stop(audioCtxRef.current.currentTime + dur);
-  };
-
-  const tickMelody = () => {
-    if (!musicOn) return;
-    playNote(melody[noteIdxRef.current % melody.length], 0.18);
-    noteIdxRef.current++;
-    noteTimerRef.current = window.setTimeout(tickMelody, 200);
-  };
-
-  const toggleMusic = () => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-    }
-    setMusicOn(!musicOn);
-  };
-
-  useEffect(() => {
-    if (musicOn) {
-      tickMelody();
-    } else if (noteTimerRef.current) {
-      clearTimeout(noteTimerRef.current);
-    }
-    return () => {
-      if (noteTimerRef.current) clearTimeout(noteTimerRef.current);
-    };
-  }, [musicOn]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100) || 0;
+      const totalScroll = document.body.scrollHeight - window.innerHeight;
+      const pct = totalScroll > 0 ? Math.round((window.scrollY / totalScroll) * 100) : 0;
       setScrollProgress(pct);
       const stages = ['Setting Sail', 'Calm Belt', 'Grand Line', 'New World', 'One Piece'];
       setScrollStage(stages[Math.min(4, Math.floor(pct / 22))]);
     };
 
     const handleClick = (e: MouseEvent) => {
-      const items = ['⚔️', '🗡️', '✨', '🌸', '⭐'];
+      // Don't spawn sparkle if clicking interactive inputs or buttons
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'BUTTON' || target.tagName === 'A') {
+        return;
+      }
+
+      const items = ['⚔️', '🗡️', '✨', '🛡️', '⭐', '⚡'];
       const item = items[Math.floor(Math.random() * items.length)];
       const el = document.createElement('div');
       el.className = 'sfx';
@@ -107,30 +65,35 @@ const App: React.FC = () => {
       setTimeout(() => el.remove(), 950);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('click', handleClick);
 
     const achs = [
-      { id: 'about-s', ico: '📜', msg: "Profile Unlocked — The Navigator's Story" },
-      { id: 'skills-s', ico: '⚔️', msg: 'Skill Tree Revealed — Three Sword Style' },
-      { id: 'proj-s', ico: '🗺️', msg: 'Projects Discovered — Islands Conquered' },
-      { id: 'exp-s', ico: '🏛️', msg: 'Arc Complete — Real World Experience' },
-      { id: 'certs-s', ico: '🏅', msg: 'Haki Mastered — Credentials Verified' },
-      { id: 'contact-s', ico: '📡', msg: "Den Den Mushi Ready — Let's Connect" },
+      { id: 'domains-s', ico: '🛡️', msg: 'Battle Stations Unlocked — SOC, VAPT, Malware, IoT, OT, DFIR' },
+      { id: 'about-s', ico: '📜', msg: "Dossier Unlocked — The Cyber Navigator's Code" },
+      { id: 'skills-s', ico: '⚔️', msg: 'Skill Tree Revealed — Three-Sword Cyber Mastery' },
+      { id: 'proj-s', ico: '🗺️', msg: 'Projects Discovered — 8 Security Deployments Explored' },
+      { id: 'exp-s', ico: '🏛️', msg: 'Arc Complete — UP Police Forensics & Lab Ops' },
+      { id: 'certs-s', ico: '🏅', msg: 'Credentials Verified — CAP, Google, Blue Team, arcX' },
+      { id: 'edu-s', ico: '🎓', msg: 'Academic Record — NFSU B.Tech + M.Tech (8.82 CGPA)' },
+      { id: 'contact-s', ico: '📡', msg: "Den Den Mushi Active — Ready for Direct Dispatch" },
     ];
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !seenSections.current.has(e.target.id)) {
-          seenSections.current.add(e.target.id);
-          const a = achs.find((x) => x.id === e.target.id);
-          if (a) {
-            setToast({ show: true, icon: a.ico, msg: a.msg });
-            setTimeout(() => setToast((prev) => ({ ...prev, show: false })), 3200);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !seenSections.current.has(e.target.id)) {
+            seenSections.current.add(e.target.id);
+            const a = achs.find((x) => x.id === e.target.id);
+            if (a) {
+              setToast({ show: true, icon: a.ico, msg: a.msg });
+              setTimeout(() => setToast((prev) => ({ ...prev, show: false })), 3400);
+            }
           }
-        }
-      });
-    }, { threshold: 0.4 });
+        });
+      },
+      { threshold: 0.3 }
+    );
 
     achs.forEach((a) => {
       const el = document.getElementById(a.id);
@@ -145,14 +108,13 @@ const App: React.FC = () => {
   }, []);
 
   const msgs = [
-    { t: 'Good Day, Navigator!', b: "You've landed on exactly the right page. Welcome aboard! ⚔️" },
-    { t: 'Right Port, Right Time!', b: 'This portfolio was made for someone like you. Take a look around!' },
-    { t: 'Nothing Happened.', b: '...just kidding. A lot happened. Scroll down and see! 🗡️' },
-    { t: 'The Grand Line of Cyber', b: 'Every great security engineer started somewhere. This is where mine begins.' },
-    { t: 'Three Swords, One Goal', b: 'Forensics. Cloud. Cryptography. Three specialties — one mission: security. ⚔️' },
-    { t: 'You Found the Log Pose!', b: "The treasure you seek? It's right here — a dedicated cybersecurity engineer 🏴‍☠️" },
-    { t: 'Zoro Would Approve', b: 'Getting lost is part of the journey. But you found the right place!' },
-    { t: 'Hello, Nakama!', b: "Whether you're a recruiter, researcher, or fellow hacker — glad you're here!" },
+    { t: 'Welcome, Recruiter & Fellow Hacker!', b: "You've landed on the cyber battle station of Chinmayi Bhise. Ready to build unbreachable defenses! ⚔️" },
+    { t: 'Three Swords, One Mission', b: 'VAPT for offensive testing, SOC for real-time threat hunting, and DFIR for unimpeachable forensics. 🗡️' },
+    { t: 'Nothing Happened.', b: '...the hallmark of an exceptional security posture. Threats contained before breach. 🛡️' },
+    { t: 'The Grand Line of Cybersecurity', b: 'From analyzing firmware binaries to defending SCADA Modbus PLCs, every attack vector is mapped.' },
+    { t: 'TryHackMe Top 3%', b: 'Hundreds of challenge labs conquered. Hands-on muscle memory in active exploitation & defense. 🏆' },
+    { t: 'National Forensic Sciences University', b: 'Trained at India premier forensic & cybersecurity institute under MHA. Rigorous standards. 🎓' },
+    { t: 'Den Den Mushi Ready', b: 'Looking for a dedicated engineer in SOC, VAPT, Forensics, or OT/IoT? Let’s connect! 📡' }
   ];
 
   const handleSwordClick = () => {
@@ -163,7 +125,7 @@ const App: React.FC = () => {
     for (let i = 0; i < 6; i++) {
       const el = document.createElement('div');
       el.className = 'sfx';
-      el.textContent = ['⚔️', '🗡️', '✨', '⭐', '🌸', '💫'][Math.floor(Math.random() * 6)];
+      el.textContent = ['⚔️', '🗡️', '✨', '⭐', '🛡️', '⚡'][Math.floor(Math.random() * 6)];
       el.style.right = `${90 + Math.random() * 100}px`;
       el.style.bottom = `${80 + Math.random() * 120}px`;
       el.style.left = 'auto';
@@ -176,41 +138,52 @@ const App: React.FC = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
       <div id="prog-bar" style={{ width: `${scrollProgress}%` }}></div>
       <div id="prog-label" style={{ opacity: scrollProgress > 2 ? 1 : 0 }}>
         {scrollStage} · {scrollProgress}%
       </div>
 
+      {/* Cyber Constellation Background Canvas */}
       <Canvas />
 
+      {/* Achievement Popup Toast */}
       <AchievementToast {...toast} />
 
+      {/* Zoro Katana Action Button */}
       <SwordButton onClick={handleSwordClick} />
       <SwordMessage
         {...swordMsg}
         onClose={() => setSwordMsg((prev) => ({ ...prev, show: false }))}
       />
 
-      <Navbar musicOn={musicOn} toggleMusic={toggleMusic} />
+      {/* Navigation Bar */}
+      <Navbar />
 
+      {/* Main Content Flow */}
       <main>
         <Hero />
         <Wave />
         <Terminal />
         <Wave inverted />
-        <About />
-        <Education />
+        <SecurityDomains />
         <Wave />
-        <Skills />
+        <About />
         <Wave inverted />
+        <Skills />
+        <Wave />
         <Projects />
+        <Wave inverted />
         <Experience />
         <Certifications />
         <Wave />
+        <Education />
         <Involvement />
+        <Wave inverted />
         <Contact />
       </main>
 
+      {/* Footer */}
       <Footer />
     </>
   );
